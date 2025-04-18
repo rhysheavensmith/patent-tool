@@ -2,10 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const TO_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'delivered@resend.dev'; // Replace with your desired recipient email or use env var
-const FROM_EMAIL = 'Questionnaire <onboarding@resend.dev>'; // Replace with your verified Resend domain/email
+const TO_EMAIL = process.env.CONTACT_EMAIL;
+const FROM_EMAIL = 'Acme <onboarding@resend.dev>';
 
 export async function POST(request: NextRequest) {
+  if (!TO_EMAIL) {
+    console.error('CONTACT_EMAIL environment variable is not set.');
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+  }
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY environment variable is not set.');
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+  }
+
   try {
     const body = await request.json();
     const { name, email, message, result } = body;
@@ -15,7 +24,7 @@ export async function POST(request: NextRequest) {
     }
 
     // You can customize the email subject and body here
-    const subject = `New Quote Request from ${name}`;
+    const subject = `New Request from ${name}`;
     const emailBody = `
       <p>You received a new quote request:</p>
       <p><strong>Name:</strong> ${name}</p>
