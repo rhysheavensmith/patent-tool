@@ -4,6 +4,7 @@ import { useState } from "react";
 import { questions } from "@/data/questions";
 // import { Question } from "@/types"; // Import the Question type
 import ResultDisplay from './ResultDisplay'; // Import the new component
+import { FaRegCircle, FaCheckCircle } from "react-icons/fa"; // Import icons
 
 function Questionnaire() {
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1); // Start with question ID 1
@@ -68,9 +69,13 @@ function Questionnaire() {
       return <div>Loading question...</div>; // Or some error message
   }
 
+  const questionHeading = currentQuestion.heading;
+  console.log(questionHeading);
+
   return (
-      <div className="bg-white shadow-lg p-6 max-sm:p-4 rounded-xl max-sm:w-md w-3/4">
-        <h2 className="mb-6 text-primary-light">{currentQuestion.question}</h2>
+      <div className="bg-white shadow-lg p-6 max-sm:p-4 rounded-xl min-w-3/4 max-w-[90%] lg:max-w-3/4">
+        <h2 className="mb-6 text-secondary font-semibold text-lg">{questionHeading}</h2>
+        <p className="mb-6 text-gray-400 text-md lg:max-w-3/4">{currentQuestion.question}</p>
         {/* Only show radio options if there are regular options */}
         {regularOptions && regularOptions.length > 0 && (
             <ul className="flex flex-col gap-4 mb-8">
@@ -82,12 +87,18 @@ function Questionnaire() {
                     type="radio"
                     id={`option-${currentQuestionId}-${index}`}
                     name={`option-${currentQuestionId}`} // Ensure unique name per question
-                    className="flex-shrink-0 w-4 h-4 accent-primary"
+                    className="appearance-none" // Hide default radio button
                     onChange={() => handleOptionChange(option.label)}
                     checked={selectedOptionLabel === option.label} // Control the checked state
                     value={option.label} // Add value attribute
                     />
-                    <span className="text-gray-700 font-secondary">{option.label}</span>
+                    {/* Conditional Icon Rendering */}
+                    {selectedOptionLabel === option.label ? (
+                        <FaCheckCircle className="text-green-400 text-xl flex-shrink-0" />
+                    ) : (
+                        <FaRegCircle className="text-gray-400 text-xl flex-shrink-0" />
+                    )}
+                    <span className="text-gray-700 font-light font-primary-light text-sm">{option.label}</span>
                 </label>
                 </li>
             ))}

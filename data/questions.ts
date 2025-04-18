@@ -4,7 +4,8 @@ export const questions: Question[] = [
   // Q1
   {
     id: 1,
-    question: "What do you need to protect?",
+    heading: "What do you need to protect?",
+    question: "Select the option that best describes your situation.",
     options: [
       { label: "Your business/product brand (name or logo) from being copied by others", goTo: 2 },
       { label: "Your new product or process that you have developed from being copied by others", goTo: 5 },
@@ -14,6 +15,7 @@ export const questions: Question[] = [
   // Q2
   {
     id: 2,
+    heading: "Word, Logo, or Both?",
     question: "Do you want to protect a word or a logo that you sell your goods or services under, or both a word and a logo?",
     options: [
       { label: "Word/Slogan", goTo: 3 },
@@ -23,6 +25,7 @@ export const questions: Question[] = [
   // Q3
   {
     id: 3,
+    heading: "Is Your Mark Descriptive?",
     question: "It sounds like you may need a trade mark. Is your word or slogan descriptive of the goods or services that you are offering (for example Medical Care for a medical clinic), or is your word or slogan laudatory (i.e. words like great/wonderful/quality/value/top or similar words that are regularly used in advertising)?",
     options: [
       { 
@@ -36,6 +39,7 @@ export const questions: Question[] = [
   // Q4
   {
     id: 4,
+    heading: "Competitor Name Check",
     question: "Do you know of any competitors of yours that have a similar name?",
     options: [
       { 
@@ -53,6 +57,7 @@ export const questions: Question[] = [
   // Q5
   {
     id: 5,
+    heading: "Novel Technology?",
     question: "It sounds like you may require a patent or a registered design. Have you developed technology that has not been done anywhere else in the world before, and does it offer benefits that were not available before?",
     options: [
       { label: "Yes", goTo: 6 },
@@ -62,6 +67,7 @@ export const questions: Question[] = [
   // Q6
   {
     id: 6,
+    heading: "Product vs. Process",
     question: "Does your technology relate to a new:",
     options: [
       { label: "Product", goTo: 7 },
@@ -71,6 +77,7 @@ export const questions: Question[] = [
   // Q7
   {
     id: 7,
+    heading: "Patent for Product",
     question: "It sounds like you might be able to get patent protection for the technology that you have developed.",
     options: [
       { 
@@ -83,6 +90,7 @@ export const questions: Question[] = [
   // Q8
   {
     id: 8,
+    heading: "Software Process?",
     question: "Is your process invention software related?",
     options: [
       { label: "No", goTo: 9 },
@@ -92,6 +100,7 @@ export const questions: Question[] = [
   // Q9
   {
     id: 9,
+    heading: "Process Patent Eligibility",
     question: "You may be able to get patent protection for a process under the right circumstances.",
     options: [
       { 
@@ -104,6 +113,7 @@ export const questions: Question[] = [
   // Q10
   {
     id: 10,
+    heading: "Software Patent Eligibility",
     question: "You may be able to get patent protection for a software process invention under the right circumstances.",
     options: [
       { 
@@ -116,6 +126,7 @@ export const questions: Question[] = [
   // Q11
   {
     id: 11,
+    heading: "Distinctive Product Look?",
     question: "Does your product have a distinctive look about it that has not been shown by anyone else in the world before?",
     options: [
       { label: "Yes", goTo: 12 },
@@ -129,6 +140,7 @@ export const questions: Question[] = [
   // Q12
   {
     id: 12,
+    heading: "Registered Design Protection",
     question: "You may be able to get registered design protection for your product's distinctive look.",
     options: [
       { 
@@ -141,6 +153,7 @@ export const questions: Question[] = [
   // Q13
   {
     id: 13,
+    heading: "Copyright Protection",
     question: "You may already have copyright protection for your original works.",
     options: [
       { 
@@ -153,6 +166,7 @@ export const questions: Question[] = [
   // Q14
   {
     id: 14,
+    heading: "Trademark for Logo",
     question: "You may be able to get trademark protection for your logo.",
     options: [
       { 

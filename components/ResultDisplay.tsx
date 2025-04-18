@@ -63,15 +63,15 @@ function ResultDisplay({ response }: ResultDisplayProps) {
   };
 
   return (
-    <div className="bg-white shadow-lg p-10 rounded-xl max-sm:w-md w-3/4 relative">
+    <div className="bg-white shadow-lg p-10 rounded-xl max-sm:w-md w-3/4 relative my-10">
       <div className="relative">
-        <span className="absolute text-8xl text-primary-light font-serif opacity-20 -top-4 -left-4"><FaQuoteLeft /></span>
+        <span className="absolute text-6xl text-primary-light font-serif opacity-20 -top-4 -left-4"><FaQuoteLeft /></span>
       </div>
-      <h6 className="font-semibold text-gray-500 my-4 text-xl max-sm:text-lg max-sm:leading-[1.5] max-sm:max-w-[90%] leading-loose max-w-[70%] relative z-10">
+      <h3 className="font-semibold text-gray-400 my-4 text-2xl max-sm:text-lg max-sm:leading-[1.5] max-sm:max-w-[90%] leading-loose max-w-[70%] relative z-10">
         {response}
-      </h6>
+      </h3>
 
-      <h2 className="text-xl font-semibold text-primary-light mb-4">Speak to our Team:</h2>
+      <h3 className="font-semibold text-primary-light mb-4">Speak to our Team:</h3> 
 
       {submitStatus === 'success' && (
         <div
@@ -105,7 +105,7 @@ function ResultDisplay({ response }: ResultDisplayProps) {
       
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+            <label htmlFor="name" className="block text-xs font-medium text-gray-700 mb-1">Your Name</label>
             <input
               type="text"
               id="name"
@@ -118,7 +118,7 @@ function ResultDisplay({ response }: ResultDisplayProps) {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-1">Email</label>
             <input
               type="email"
               id="email"
@@ -131,7 +131,7 @@ function ResultDisplay({ response }: ResultDisplayProps) {
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+            <label htmlFor="message" className="block text-xs font-medium text-gray-700 mb-1">Message</label>
             <textarea
               id="message"
               name="message"

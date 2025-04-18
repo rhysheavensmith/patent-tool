@@ -2,7 +2,7 @@ import Questionnaire from "@/components/Questionnaire"
 
 const Home = () => {
   return ( 
-    <main className='flex justify-center items-center h-screen max-sm:h-full max-sm:w-[90%] max-sm:mx-auto max-sm:py-10'>
+    <main className='flex items-center justify-center min-h-screen max-w-screen-lg mx-auto'>
       <Questionnaire />
     </main>
   );
