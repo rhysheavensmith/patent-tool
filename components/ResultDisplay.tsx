@@ -63,11 +63,11 @@ function ResultDisplay({ response }: ResultDisplayProps) {
   };
 
   return (
-    <div className="bg-white shadow-lg p-6 max-sm:p-4 rounded-xl max-sm:w-md w-3/4 relative">
+    <div className="bg-white shadow-lg p-10 rounded-xl max-sm:w-md w-3/4 relative">
       <div className="relative">
         <span className="absolute text-8xl text-primary-light font-serif opacity-20 -top-4 -left-4"><FaQuoteLeft /></span>
       </div>
-      <h6 className="font-semibold text-gray-500 my-4 text-xl leading-loose max-w-[70%] relative z-10">
+      <h6 className="font-semibold text-gray-500 my-4 text-xl max-sm:text-lg max-sm:leading-[1.5] max-sm:max-w-[90%] leading-loose max-w-[70%] relative z-10">
         {response}
       </h6>
 
