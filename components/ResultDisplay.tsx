@@ -102,7 +102,7 @@ function ResultDisplay({ response }: ResultDisplayProps) {
         </div>
       )}
 
-      {submitStatus !== 'success' && ( // Hide form on success
+      
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
@@ -152,7 +152,7 @@ function ResultDisplay({ response }: ResultDisplayProps) {
             </button>
           </div>
         </form>
-      )}
+     
 
       {/* Optional: Add a button to restart the questionnaire */}
       {/*
