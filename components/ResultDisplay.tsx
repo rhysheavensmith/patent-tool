@@ -71,7 +71,7 @@ function ResultDisplay({ response }: ResultDisplayProps) {
         {response}
       </h3>
 
-      <h3 className="font-semibold text-primary-light mb-4">Speak to our Team:</h3> 
+      <h2 className="font-semibold text-primary-light mb-4">Speak to our Team:</h2> 
 
       {submitStatus === 'success' && (
         <div
