@@ -1,41 +1,113 @@
 'use client'
 
-import {useState} from 'react'
+import { useState } from "react";
+import { questions } from "@/data/questions";
+// import { Question } from "@/types"; // Import the Question type
+import ResultDisplay from './ResultDisplay'; // Import the new component
 
-import questions from "@/data/questions";
+function Questionnaire() {
+  const [currentQuestionId, setCurrentQuestionId] = useState<number>(1); // Start with question ID 1
+  const [selectedOptionLabel, setSelectedOptionLabel] = useState<string | null>(null);
+  const [showResponse, setShowResponse] = useState<string | null>(null); // State to hold the final response
 
+  const handleOptionChange = (optionLabel: string) => {
+    setSelectedOptionLabel(optionLabel);
+  };
 
-const Questionnaire: React.FC = () => {
-    const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
-    const handlePrevious = () => {
-        setCurrentQuestion(questions[currentQuestion.id - 1]);
-    } 
+  const currentQuestion = questions.find(q => q.id === currentQuestionId);
+
+  // Separate 'Learn More' final options from regular choices
+  const learnMoreOption = currentQuestion?.options?.find(
+    opt => opt.label === "Learn More" && opt.complete && opt.response
+  );
+  const regularOptions = currentQuestion?.options?.filter(
+    opt => !(opt.label === "Learn More" && opt.complete && opt.response)
+  );
+  const hasOnlyLearnMore = learnMoreOption && (!regularOptions || regularOptions.length === 0);
+
+  const handleNext = () => {
+    // If the only option is 'Learn More', show its response directly
+    if (hasOnlyLearnMore && learnMoreOption && learnMoreOption.response) {
+        setShowResponse(learnMoreOption.response);
+        return;
+    }
+
+    // Existing logic for regular options
+    if (!selectedOptionLabel || !currentQuestion || !currentQuestion.options) return;
+
+    const selectedOpt = currentQuestion.options.find(opt => opt.label === selectedOptionLabel);
+
+    if (selectedOpt) {
+      if (selectedOpt.complete && selectedOpt.response) {
+        // Show the final response
+        setShowResponse(selectedOpt.response);
+      } else if (selectedOpt.goTo) {
+        // Navigate to the next question
+        const nextQuestionExists = questions.some(q => q.id === selectedOpt.goTo);
+        if (nextQuestionExists) {
+            setCurrentQuestionId(selectedOpt.goTo);
+            setSelectedOptionLabel(null); // Reset selection for the next question
+        } else {
+            console.error(`Question with id ${selectedOpt.goTo} not found.`);
+            // Optionally handle this case, e.g., show an error message or go to a default state
+        }
+      }
+    }
+  };
+
+  // If a response should be shown, render the ResultDisplay component
+  if (showResponse) {
+    return <ResultDisplay response={showResponse} />;
+    // Optionally pass a restart handler:
+    // return <ResultDisplay response={showResponse} onRestart={handleRestart} />;
+  }
+
+  // Render the current question if it exists
+  if (!currentQuestion) {
+      // Handle case where question is not found (e.g., initial state or error)
+      return <div>Loading question...</div>; // Or some error message
+  }
+
   return (
-    <div className="max-w-2xl mx-auto p-6 rounded-lg bg-secondary mt-8">
-      <h2 className="mb-8 text-center">IP Guardian Questionnaire</h2>
-      
-      <div className="bg-primary/30 p-6 rounded-lg">
-        <h3 className="mb-6">{currentQuestion.question}</h3>
-        
-        <ul className="space-y-4 mb-8">
-          {currentQuestion.options?.map((option) => (
-            <li key={option.label} className="flex items-center gap-2 text-primary-light text-sm font-secondary">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="option" value={option.label} className="form-radio text-highlight"/>
-                <span>{option.label}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
-        
-        <div className="flex justify-between mt-6">
-          {currentQuestion.id === 1 ? null : 
-          <button onClick={handlePrevious} className="bg-highlight fonnt-secondary text-accent px-4 py-2 cursor-pointer rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-highlight/80">
-            Previous
-          </button>}
+      <div className="bg-white shadow-lg p-6 max-sm:p-4 rounded-xl max-sm:w-md w-3/4">
+        <h2 className="mb-6 text-primary-light">{currentQuestion.question}</h2>
+        {/* Only show radio options if there are regular options */}
+        {regularOptions && regularOptions.length > 0 && (
+            <ul className="flex flex-col gap-4 mb-8">
+            {regularOptions.map((option, index) => (
+                <li key={index}>
+                {/* Use index for unique ID, but option.label is better if unique */}
+                <label htmlFor={`option-${currentQuestionId}-${index}`} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                    <input
+                    type="radio"
+                    id={`option-${currentQuestionId}-${index}`}
+                    name={`option-${currentQuestionId}`} // Ensure unique name per question
+                    className="flex-shrink-0 w-4 h-4 accent-primary"
+                    onChange={() => handleOptionChange(option.label)}
+                    checked={selectedOptionLabel === option.label} // Control the checked state
+                    value={option.label} // Add value attribute
+                    />
+                    <span className="text-gray-700 font-secondary">{option.label}</span>
+                </label>
+                </li>
+            ))}
+            </ul>
+        )}
+        {/* Add margin bottom if radio buttons are hidden but learn more exists */}
+        {hasOnlyLearnMore && <div className="mb-8"></div>}
+
+        <div className="flex justify-end">
+          <button
+            onClick={handleNext}
+            // Disable button only if it's 'Next' and no option is selected
+            disabled={!hasOnlyLearnMore && !selectedOptionLabel}
+            className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {/* Change button text if only 'Learn More' is available */}
+            {hasOnlyLearnMore ? "Learn More" : "Next"}
+          </button>
         </div>
       </div>
-    </div>
   );
 }
 

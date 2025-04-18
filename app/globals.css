@@ -3,10 +3,11 @@
 @import "tailwindcss";
 
 
+
 :root {
-  --primary: #3f3c9a;
-  --primary-light: #bbb9ee;
-  --secondary: #7764ac;
+  --primary: #26229a;
+  --secondary: #3f3c9a;
+  --primary-light: #7764ac;
   --highlight: #b83867;
   --accent: #ffffff;
 }
@@ -22,7 +23,7 @@
 }
 
 body {
-  background: var(--primary);
+  background: var(--secondary);
   color: var(--accent);
 }
 
