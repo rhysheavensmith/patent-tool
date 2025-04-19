@@ -67,9 +67,9 @@ function ResultDisplay({ response }: ResultDisplayProps) {
       <div className="relative">
         <span className="absolute text-6xl text-primary-light font-serif opacity-20 -top-4 -left-4"><FaQuoteLeft /></span>
       </div>
-      <h3 className="font-semibold text-gray-400 my-4 text-2xl max-sm:text-lg max-sm:leading-[1.5] leading-loose sm:max-w-[70%] relative z-10">
+      <p className="font-secondary text-slate-600 my-4 text-4xl max-sm:text-lg max-sm:leading-[1.5] leading-loose sm:max-w-[70%] relative z-10">
         {response}
-      </h3>
+      </p>
 
       <h2 className="font-semibold text-primary-light mb-4 max-sm:text-center">Speak to our Team:</h2> 
 
@@ -105,7 +105,7 @@ function ResultDisplay({ response }: ResultDisplayProps) {
       
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-xs font-medium text-gray-700 mb-1">Your Name</label>
+            <label htmlFor="name" className="block text-xs font-secondary font-medium text-gray-700 mb-1">Your Name</label>
             <input
               type="text"
               id="name"
@@ -113,12 +113,12 @@ function ResultDisplay({ response }: ResultDisplayProps) {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary-light"
+              className="font-secondary w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-gray-400"
               placeholder="John Doe"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-1">Email</label>
+            <label htmlFor="email" className="block text-xs font-secondary font-medium text-gray-700 mb-1">Email</label>
             <input
               type="email"
               id="email"
@@ -126,12 +126,12 @@ function ResultDisplay({ response }: ResultDisplayProps) {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary-light"
+              className="font-secondary w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-gray-400"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-xs font-medium text-gray-700 mb-1">Message</label>
+            <label htmlFor="message" className="block text-xs font-secondary font-medium text-gray-700 mb-1 ">Message</label>
             <textarea
               id="message"
               name="message"
@@ -139,14 +139,14 @@ function ResultDisplay({ response }: ResultDisplayProps) {
               value={formData.message}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary-light"
+              className="font-secondary w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-gray-400"
               placeholder="How can we help you?"></textarea>
           </div>
           <div className="flex justify-end max-sm:justify-center">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-sm:w-full"
+              className="font-secondary bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-sm:w-full"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
