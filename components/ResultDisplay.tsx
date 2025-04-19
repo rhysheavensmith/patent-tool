@@ -63,15 +63,15 @@ function ResultDisplay({ response }: ResultDisplayProps) {
   };
 
   return (
-    <div className="bg-white shadow-lg p-10 rounded-xl max-w-[90%] relative">
+    <div className="bg-white shadow-lg p-10 rounded-xl max-w-[90%] relative max-sm:my-5">
       <div className="relative">
         <span className="absolute text-6xl text-primary-light font-serif opacity-20 -top-4 -left-4"><FaQuoteLeft /></span>
       </div>
-      <p className="font-secondary text-slate-600 my-4 text-4xl max-sm:text-lg max-sm:leading-[1.5] leading-loose sm:max-w-[70%] relative z-10">
+      <p className="font-primary font-bold text-slate-500 text-2xl my-4 max-sm:text-xl md:leading-relaxed md:max-w-[90%] max-sm:w-full max-sm:mx-auto max-sm:text-center relative z-10">
         {response}
       </p>
 
-      <h2 className="font-semibold text-secondary mb-4 max-sm:text-center">Speak to our Team:</h2> 
+      <h1 className="font-semibold text-secondary mb-4 max-sm:text-center">Speak to our Team:</h1> 
 
       {submitStatus === 'success' && (
         <div

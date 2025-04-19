@@ -73,9 +73,9 @@ function Questionnaire() {
   console.log(questionHeading);
 
   return (
-      <div className="bg-white shadow-lg p-10 max-sm:p-4 rounded-xl min-w-3/4 max-w-[90%] lg:max-w-3/4">
-        <h2 className="mb-6 text-secondary font-semibold text-lg max-sm:text-center">{questionHeading}</h2>
-        <p className="mb-6 text-slate-600 text-md max-sm:text-sm lg:max-w-3/4 max-sm:text-center max-sm:mx-8">{currentQuestion.question}</p>
+      <div className="bg-white shadow-lg p-10 max-sm:p-4 rounded-xl min-w-3/4 max-w-[90%] lg:max-w-3/4 max-sm:my-5 md:my-10">
+        <h1 className="mb-6 text-primary text-lg max-sm:text-center">{questionHeading}</h1>
+        <p className="mb-6 text-slate-500 font-secondary text-lg max-sm:text-md max-w-full max-sm:max-w-[90%] max-sm:mx-auto max-sm:text-center leading-relaxed">{currentQuestion.question}</p>
         {/* Only show radio options if there are regular options */}
         {regularOptions && regularOptions.length > 0 && (
             <ul className="flex flex-col gap-4 mb-8">
@@ -98,7 +98,7 @@ function Questionnaire() {
                     ) : (
                         <FaRegCircle className="text-gray-100 text-2xl flex-shrink-0" />
                     )}
-                    <span className="text-gray-400 font-light font-secondary text-sm">{option.label}</span>
+                    <span className="text-gray-500 font-light font-secondary text-md max-sm:text-sm">{option.label}</span>
                 </label>
                 </li>
             ))}
