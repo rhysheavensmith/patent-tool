@@ -73,9 +73,9 @@ function Questionnaire() {
   console.log(questionHeading);
 
   return (
-      <div className="bg-white shadow-lg p-6 max-sm:p-4 rounded-xl min-w-3/4 max-w-[90%] lg:max-w-3/4">
-        <h2 className="mb-6 text-secondary font-semibold text-lg">{questionHeading}</h2>
-        <p className="mb-6 text-gray-400 text-md lg:max-w-3/4">{currentQuestion.question}</p>
+      <div className="bg-white shadow-lg p-10 max-sm:p-4 rounded-xl min-w-3/4 max-w-[90%] lg:max-w-3/4">
+        <h2 className="mb-6 text-secondary font-semibold text-lg max-sm:text-center">{questionHeading}</h2>
+        <p className="mb-6 text-gray-400 text-md max-sm:text-sm lg:max-w-3/4 max-sm:text-center max-sm:mx-8">{currentQuestion.question}</p>
         {/* Only show radio options if there are regular options */}
         {regularOptions && regularOptions.length > 0 && (
             <ul className="flex flex-col gap-4 mb-8">
@@ -94,9 +94,9 @@ function Questionnaire() {
                     />
                     {/* Conditional Icon Rendering */}
                     {selectedOptionLabel === option.label ? (
-                        <FaCheckCircle className="text-green-400 text-xl flex-shrink-0" />
+                        <FaCheckCircle className="text-green-400 text-2xl flex-shrink-0" />
                     ) : (
-                        <FaRegCircle className="text-gray-400 text-xl flex-shrink-0" />
+                        <FaRegCircle className="text-gray-100 text-2xl flex-shrink-0" />
                     )}
                     <span className="text-gray-700 font-light font-primary-light text-sm">{option.label}</span>
                 </label>
@@ -107,12 +107,12 @@ function Questionnaire() {
         {/* Add margin bottom if radio buttons are hidden but learn more exists */}
         {hasOnlyLearnMore && <div className="mb-8"></div>}
 
-        <div className="flex justify-end">
+        <div className="flex justify-end max-sm:justify-center">
           <button
             onClick={handleNext}
             // Disable button only if it's 'Next' and no option is selected
             disabled={!hasOnlyLearnMore && !selectedOptionLabel}
-            className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-sm:w-full"
           >
             {/* Change button text if only 'Learn More' is available */}
             {hasOnlyLearnMore ? "Learn More" : "Next"}

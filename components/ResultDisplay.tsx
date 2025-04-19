@@ -63,15 +63,15 @@ function ResultDisplay({ response }: ResultDisplayProps) {
   };
 
   return (
-    <div className="bg-white shadow-lg p-10 rounded-xl max-sm:w-md w-3/4 relative my-10">
+    <div className="bg-white shadow-lg p-10 rounded-xl max-w-[90%] relative">
       <div className="relative">
         <span className="absolute text-6xl text-primary-light font-serif opacity-20 -top-4 -left-4"><FaQuoteLeft /></span>
       </div>
-      <h3 className="font-semibold text-gray-400 my-4 text-2xl max-sm:text-lg max-sm:leading-[1.5] max-sm:max-w-[90%] leading-loose max-w-[70%] relative z-10">
+      <h3 className="font-semibold text-gray-400 my-4 text-2xl max-sm:text-lg max-sm:leading-[1.5] leading-loose sm:max-w-[70%] relative z-10">
         {response}
       </h3>
 
-      <h2 className="font-semibold text-primary-light mb-4">Speak to our Team:</h2> 
+      <h2 className="font-semibold text-primary-light mb-4 max-sm:text-center">Speak to our Team:</h2> 
 
       {submitStatus === 'success' && (
         <div
@@ -142,11 +142,11 @@ function ResultDisplay({ response }: ResultDisplayProps) {
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary-light"
               placeholder="How can we help you?"></textarea>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end max-sm:justify-center">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-sm:w-full"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
