@@ -1,18 +1,24 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const TO_EMAIL = process.env.CONTACT_EMAIL;
-const FROM_EMAIL = 'Acme <onboarding@resend.dev>';
+const FROM_EMAIL = "IP Guardian Quiz <no-reply@rhysheavensmith.com>";
 
 export async function POST(request: NextRequest) {
   if (!TO_EMAIL) {
-    console.error('CONTACT_EMAIL environment variable is not set.');
-    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    console.error("CONTACT_EMAIL environment variable is not set.");
+    return NextResponse.json(
+      { error: "Server configuration error" },
+      { status: 500 }
+    );
   }
   if (!process.env.RESEND_API_KEY) {
-    console.error('RESEND_API_KEY environment variable is not set.');
-    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    console.error("RESEND_API_KEY environment variable is not set.");
+    return NextResponse.json(
+      { error: "Server configuration error" },
+      { status: 500 }
+    );
   }
 
   try {
@@ -20,7 +26,10 @@ export async function POST(request: NextRequest) {
     const { name, email, message, result } = body;
 
     if (!name || !email || !message || !result) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
     // You can customize the email subject and body here
@@ -45,14 +54,19 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      console.error('Resend error:', error);
-      return NextResponse.json({ error: 'Error sending email' }, { status: 500 });
+      console.error("Resend error:", error);
+      return NextResponse.json(
+        { error: "Error sending email" },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({ message: 'Email sent successfully', data });
-
+    return NextResponse.json({ message: "Email sent successfully", data });
   } catch (error) {
-    console.error('API error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error("API error:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
-} 
+}
