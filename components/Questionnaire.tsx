@@ -5,6 +5,7 @@ import { questions } from "@/data/questions";
 // import { Question } from "@/types"; // Import the Question type
 import ResultDisplay from "./ResultDisplay"; // Import the new component
 import { FaRegCircle, FaCheckCircle } from "react-icons/fa"; // Import icons
+import { ChevronLeft, RotateCcw } from "lucide-react"; // Import Lucide icons
 
 function Questionnaire() {
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1); // Start with question ID 1
@@ -141,20 +142,32 @@ function Questionnaire() {
       {hasOnlyLearnMore && <div className="mb-8"></div>}
 
       <div className="flex justify-between items-center max-sm:flex-col max-sm:gap-4">
-        {/* Previous button - only show after first question */}
-        {questionHistory.length > 1 && (
-          <button
-            onClick={handlePrevious}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold transition cursor-pointer max-sm:w-full"
-          >
-            Previous
-          </button>
-        )}
-        {/* Add margin-left auto to Next button when Previous is hidden */}
+        <div className="flex gap-4 max-sm:w-full max-sm:flex-col">
+          {/* Previous button - show after first question */}
+          {questionHistory.length > 1 && (
+            <button
+              onClick={handlePrevious}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold transition cursor-pointer max-sm:w-full flex items-center justify-center gap-2"
+            >
+              <ChevronLeft className="h-5 w-5" />
+              Back
+            </button>
+          )}
+          {/* Start Over button - show after first question */}
+          {questionHistory.length > 1 && (
+            <button
+              onClick={handleRestart}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold transition cursor-pointer max-sm:w-full flex items-center justify-center"
+            >
+              <RotateCcw className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+        {/* Next button */}
         <button
           onClick={handleNext}
           disabled={!hasOnlyLearnMore && !selectedOptionLabel}
-          className={`bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-sm:w-full ${questionHistory.length === 1 ? "ml-auto" : ""}`}
+          className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-sm:w-full"
         >
           {hasOnlyLearnMore ? "Learn More" : "Next"}
         </button>
