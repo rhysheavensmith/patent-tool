@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     // You can customize the email subject and body here
-    const subject = `New Request from ${name}`;
+    const subject = `IP protection tool | form submission`;
     const emailBody = `
       <p>You received a new quote request:</p>
       <p><strong>Name:</strong> ${name}</p>
